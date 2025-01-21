@@ -14,7 +14,7 @@ export default function Navbar() {
       path: "#",
       dropdown: [
         { name: "Who We Are", path: "/who-we-are" },
-        { name: "Our Mission", path: "/mission" },
+        { name: "Our Vision", path: "/Vision" },
         { name: "Plan a Visit", path: "/visit" },
         { name: "Leadership", path: "/leadership" },
         { name: "Events", path: "/events" },
@@ -26,6 +26,8 @@ export default function Navbar() {
     { name: "Donation", path: "/donation" },
     { name: "Shop", path: "/shop" },
     { name: "Contacts", path: "/contact" },
+    { name: "About Us", path: "/about" },
+    { name: "Contribute", path: "/contribute" },
   ]
 
   return (
@@ -44,7 +46,8 @@ export default function Navbar() {
                 {link.dropdown ? (
                   <div>
                     <button
-                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      onMouseEnter={() => setDropdownOpen(!dropdownOpen)}
+                      
                       className="text-gray-800 hover:text-yellow-500 flex items-center space-x-1"
                     >
                       <span>{link.name}</span>
