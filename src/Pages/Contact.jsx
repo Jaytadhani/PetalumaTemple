@@ -1,10 +1,16 @@
-import React from "react"
-import Layout from "../Components/Layout"
+import React from 'react'
+import Layout from '../Components/Layout'
 
-const Home = () => {
+const Contact = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
+        
+        
+     
+
+       <div className="container mx-auto px-4 py-8">
+       <h1 className='text-3xl text-red-500'>Contact
+       </h1>  
         <h1 className="text-2xl font-bold mb-4">Welcome to Our Website</h1>
         <p className="mb-4">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quaerat eos impedit in facere. Tenetur dolorem
@@ -19,10 +25,9 @@ const Home = () => {
           inventore!
         </p>
         {/* Add more content as needed */}
-      </div>
-    </Layout>
+      </div>      
+        </Layout>
   )
 }
 
-export default Home
-
+export default Contact
