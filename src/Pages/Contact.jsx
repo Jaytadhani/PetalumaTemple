@@ -1,33 +1,98 @@
-import React from 'react'
-import Layout from '../Components/Layout'
+import React, { useState } from "react"
+import Layout from "../Components/Layout"
 
 const Contact = () => {
+
+    const [name, setName]  = useState("")
+    const [email, setEmail]  = useState("")
+    const [message, setMessage]  = useState("")
+    const[arr,setarr]=useState([])
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        const obj={
+            name,
+            email,
+            message
+        }
+        setarr((prevArr) => [...prevArr, obj]);
+        console.log(arr)
+
+    }
+
+
   return (
     <Layout>
-        
-        
-     
-
-       <div className="container mx-auto px-4 py-8">
-       <h1 className='text-3xl text-red-500'>Contact
-       </h1>  
-        <h1 className="text-2xl font-bold mb-4">Welcome to Our Website</h1>
-        <p className="mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quaerat eos impedit in facere. Tenetur dolorem
-          quis aliquam ea beatae nisi, eum libero sunt iste nostrum odio. Saepe, sit molestiae quaerat laborum eveniet
-          voluptatum quas ullam impedit veniam et, consectetur officiis necessitatibus ex amet dolore vitae voluptatem
-          quod deserunt commodi expedita dignissimos deleniti in!
+      <div className="max-w-3xl py-10 mx-auto">
+        <h1 className="text-4xl font-bold text-orange-600 mt-22 ">Contact Us</h1>
+        <div className="grid grid-cols-2 gap-5">
+            <div>
+        <p className="mb-6">
+          We'd love to hear from you! If you have any questions, suggestions, or would like to get involved with the
+          Sonoma Hanuman Temple project, please don't hesitate to reach out.
         </p>
-        <p className="mb-4">
-          Amet praesentium, quaerat quo soluta quibusdam magnam dolores aliquam aliquid numquam molestiae, dolorum
-          voluptatibus! Distinctio assumenda doloribus impedit architecto officia quo inventore autem possimus repellat,
-          veritatis expedita? Aliquid unde vel totam quia dolore sunt labore aspernatur saepe, placeat quas temporibus
-          inventore!
-        </p>
-        {/* Add more content as needed */}
-      </div>      
-        </Layout>
+        </div>
+        <div>
+        <form className="space-y-4 ">
+          <div>
+            <label htmlFor="name" className="block text-orange-600 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
+              className="w-full px-3 py-2 border border-orange-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-orange-600 mb-1">
+              Email
+            </label>
+            <input
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+              type="email"
+              id="email"
+              name="email"
+              className="w-full px-3 py-2 border border-orange-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="message" className="block text-orange-600 mb-1">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              value={message}
+              onChange={(e)=>setMessage(e.target.value)}
+              className="w-full px-3 py-2 border border-orange-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              required
+            ></textarea>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="bg-orange-600 text-white px-6 py-2 rounded-md hover:bg-orange-700 transition-colors"
+              onClick={handleClick}
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+        </div>
+        </div>
+   
+      </div>
+    </Layout>
   )
 }
 
 export default Contact
+
