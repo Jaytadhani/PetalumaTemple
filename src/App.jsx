@@ -6,7 +6,9 @@ import Footer from "./Components/Footer";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Vision from "./Pages/Vision";
-import Contribute from "./Pages/Contribute";
+import Donation from "./Pages/Donation";
+import Event from "./Pages/Event";
+import EventDetail from "./Pages/EventDetail";
 
 
 const App = () => {
@@ -20,7 +22,9 @@ const App = () => {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/vision" element={<Vision/>} />
-          <Route path="/contribute" element={<Contribute/>} />
+          <Route path="/donation" element={<Donation/>} />
+          <Route path="/event" element={<Event/>} />
+          <Route path="/events/:id" element={<EventDetail />} />
         </Routes>
       </div>
     
