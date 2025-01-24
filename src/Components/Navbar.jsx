@@ -1,54 +1,68 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { HiMenu, HiPhone, HiChevronDown, HiX } from "react-icons/hi"
 import Logo from "../assets/Logo1.png"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const navRef = useRef();
+
+
+
+  useGSAP(()=>{
+    const tl = gsap.timeline()
+    tl.from('.anim', {
+      duration: 1,
+      y:-100,
+      delay:0.1,
+      opacity:0,
+    filter:"blur(10px)",
+      stagger:0.05
+    })
+  })
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Donation", path: "/donation" },
     {
       name: "Pages",
       path: "#",
       dropdown: [
         { name: "Who We Are", path: "/who-we-are" },
-        { name: "Our Vision", path: "/Vision" },
+        { name: "Our Vision", path: "/vision" },
         { name: "Plan a Visit", path: "/visit" },
-        { name: "Leadership", path: "/leadership" },
-        { name: "Events", path: "/events" },
-        { name: "FAQ", path: "/faq" },
-        { name: "Tools", path: "/tools" },
+      
       ],
     },
-    { name: "Blog", path: "/blog" },
-    { name: "Donation", path: "/donation" },
-    { name: "Shop", path: "/shop" },
-    { name: "Contacts", path: "/contact" },
+    
+    { name: "Event", path: "/event" },
     { name: "About Us", path: "/about" },
-    { name: "Contribute", path: "/contribute" },
+    { name: "Contacts", path: "/contact" },
+  
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md h-18">
+    <nav ref={navRef} className="fixed top-0 font-bold left-0 right-0 z-50 anim bg-white shadow-md h-18">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <img src={Logo} alt="Shakti Logo" className="h-16  w-16  " />
+          <Link to="/" className="flex-shrink-0">  
+            <img src={Logo} alt="Shakti Logo" className="h-16 anim w-16  " />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             {navLinks.map((link) => (
-              <div key={link.name} className="relative">
+              <div key={link.name} className="relative anim">
                 {link.dropdown ? (
                   <div>
                     <button
                       onMouseEnter={() => setDropdownOpen(!dropdownOpen)}
                       
-                      className="text-gray-800 hover:text-yellow-500 flex items-center space-x-1"
+                      className="text-gray-800 hover:text-orange-600 flex items-center space-x-1"
                     >
                       <span>{link.name}</span>
                       <HiChevronDown className="h-4 w-4" />
@@ -69,7 +83,7 @@ export default function Navbar() {
                     )}
                   </div>
                 ) : (
-                  <Link to={link.path} className="text-gray-800 hover:text-yellow-500">
+                  <Link to={link.path} className="text-gray-800 hover:text-orange-600">
                     {link.name}
                   </Link>
                 )}
@@ -78,14 +92,14 @@ export default function Navbar() {
           </div>
 
           {/* Contact and Donate */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-4">
-            <a href="tel:1800458567" className="text-gray-800 flex items-center space-x-2">
+          <div className="hidden  lg:flex lg:items-center lg:space-x-4">
+            <a href="tel:1800458567" className="text-gray-800 flex items-center anim space-x-2">
               <HiPhone className="h-5 w-5" />
               <span>1 800 458 56 97</span>
             </a>
             <Link
               to="/donate"
-              className="bg-yellow-500 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-400 transition-colors"
+              className="bg-yellow-500 text-black px-6 py-2 rounded-md font-medium anim hover:bg-yellow-400 transition-colors"
             >
               DONATE
             </Link>
