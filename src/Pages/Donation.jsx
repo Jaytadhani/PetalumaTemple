@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../Components/Layout"
 
-const Contribute = () => {
+const Donation = () => {
   return (
     <Layout>
       <div className="max-w-3xl mx-auto">
@@ -35,5 +35,5 @@ const Contribute = () => {
   )
 }
 
-export default Contribute
+export default Donation
 
