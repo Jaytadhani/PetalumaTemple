@@ -5,17 +5,22 @@ const Home = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-orange-600 mb-6">Welcome to the Sonoma Hanuman Temple Dream Project</h1>
+        <div style={{
+          backgroundImage:`url('./src/assets/homeback.png)`
+        }}>
+          <h1 className="text-4xl font-bold text-orange-600 mb-6">Welcome to the Sonoma Hanuman Temple Dream Project</h1>
+        </div>
+        
         <h2 className="text-2xl font-semibold text-orange-500 mb-4">
           A Temple beyond Boundaries – Built by Faith, Guided by Blessings
         </h2>
         <p className="mb-4">
-          Petaluma is more than just a city—it's a vibrant community rich with culture, diversity, and a deep sense of
+          Petaluma is more than just a city it's a vibrant community rich with culture, diversity, and a deep sense of
           belonging. Nestled within its serene landscapes, a divine calling has emerged to build a space of love, faith,
           and hope: the Sonoma Hanuman Temple.
         </p>
         <p className="mb-4">
-          This sacred space is not just a temple; it is Hanuman Ji's personal invitation to all hearts seeking peace,
+          This sacred space is not just a temple; it is Hanumanji's personal invitation to all hearts seeking peace,
           strength, and answers.
         </p>
         <div className="mt-8">
