@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Layout from "../Components/Layout";
 import { useGSAP } from "@gsap/react";
+import YouTubeLiveStream from "../Components/YouTubeLiveStream";
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -56,6 +57,12 @@ const Home = () => {
             faith, origin, or background.
           </p>
         </section>
+        <div className="min-h-screen m-0 p-0 bg-orange-100 flex items-center justify-center ">
+      <div className="max-w-3xl w-full">
+        <h1 className="text-4xl font-bold text-orange-500 mb-8 text-center">My YouTube Live Stream</h1>
+        <YouTubeLiveStream />
+      </div>
+    </div>
       </main>
     </Layout>
   );
