@@ -317,13 +317,13 @@ const Home = () => {
                     className="w-full mb-4 p-2 border rounded"
                   />
                   <textarea
-                    placeholder="Your Message"
+                    placeholder="Your Message ff"
                     rows={4}
                     className="w-full mb-4 p-2 border rounded"
                   ></textarea>
                   <button
                     type="submit"
-                    className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300"
+                    className="bg-orange-600 text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300"
                   >
                     Send Message
                   </button>

@@ -26,7 +26,16 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Donation", path: "/donation" },
+    {
+      name: "Donation",
+      path: "#",
+      dropdown: [
+        { name: "Donation", path: "/donation" },
+        { name: "Donation Causes", path: "/donation-causes" },
+        { name: "Direct Donation", path: "/direct-donation" },
+      
+      ],
+    },
     {
       name: "Pages",
       path: "#",

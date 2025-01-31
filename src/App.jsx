@@ -11,6 +11,10 @@ import EventDetail from "./Pages/EventDetail"
 import Contact from "./Pages/Contact"
 import Donation from "./Pages/Donation"
 import Loader from "./Components/Loader"
+import Vision from "./Pages/Vision"
+import DonationCauses from "./Pages/DonationCauses"
+import DirectDonation from "./Pages/DirectDonation"
+import DonationDetail from "./Pages/DonationDetail"
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -63,6 +67,10 @@ const App = () => {
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/donation" element={<Donation />} />
+            <Route path="/vision" element={<Vision />} />
+            <Route path="/donation-causes" element={<DonationCauses />} />
+          <Route path="/direct-donation" element={<DirectDonation />} />
+          <Route path="/donation/:id" element={<DonationDetail />} />
           </Routes>
         </PageWrapper>
       </Router>

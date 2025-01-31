@@ -16,20 +16,23 @@ const eventsSlice = createSlice({
     events: [],
     status: "idle",
     error: null,
+    loading:false
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getEvents.pending, (state) => {
-        state.status = "loading"
+        state.loading = true
       })
       .addCase(getEvents.fulfilled, (state, action) => {
         state.status = "succeeded"
+        state.loading=false
         state.events = action.payload
       })
-      .addCase(getEvents.rejected, (state, action) => {
+      .addCase(getEvents.rejected, (state, {payload}) => {
         state.status = "failed"
-        state.error = action.payload
+        state.loading=false,
+        state.error = payload
       })
   },
 })
