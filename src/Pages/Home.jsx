@@ -317,7 +317,7 @@ const Home = () => {
                     className="w-full mb-4 p-2 border rounded"
                   />
                   <textarea
-                    placeholder="Your Message"
+                    placeholder="Your Message ff"
                     rows={4}
                     className="w-full mb-4 p-2 border rounded"
                   ></textarea>
