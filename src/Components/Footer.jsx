@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Working Hours Section */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Working Hours</h3>
+            <h3 className="text-xl font-bold mb-4">Temple Time</h3>
             <div className="space-y-2">
               <p>Mon-Fri: 9 AM – 6 PM</p>
               <p>Saturday: 9 AM – 4 PM</p>
@@ -20,11 +20,11 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Office</h3>
             <div className="space-y-2">
-              <p>Germany —</p>
-              <p>785 15h Street, Office 478</p>
-              <p>Berlin, De 81566</p>
-              <p className="mt-4">info@email.com</p>
-              <p className="text-lg font-semibold mt-4">+1 840 841 25 69</p>
+              <p>California —</p>
+              <p>2 Hiil Drive, </p>
+              <p>Petaluma, USA-94952</p>
+              <p className="mt-4">jayshreesitarama@gmail.com</p>
+              <p className="text-lg font-semibold mt-4">+15 0351 94060</p>
             </div>
           </div>
 
@@ -35,15 +35,16 @@ export default function Footer() {
               <Link to="/" className="block hover:text-gray-300">
                 Home
               </Link>
+              <Link to="/donation" className="block hover:text-gray-300">
+                Donation
+              </Link>
               <Link to="/events" className="block hover:text-gray-300">
                 Events
               </Link>
               <Link to="/about-us" className="block hover:text-gray-300">
                 About Us
               </Link>
-              <Link to="/blog" className="block hover:text-gray-300">
-                Blog
-              </Link>
+
               <Link to="/contacts" className="block hover:text-gray-300">
                 Contacts
               </Link>
@@ -76,10 +77,12 @@ export default function Footer() {
 
         {/* Copyright Section */}
         <div className="mt-16 pt-8 border-t border-gray-800">
-          <p className="text-sm text-gray-400">AncoraThemes © 2025. All Rights Reserved.</p>
+          <p className="text-sm text-gray-400">
+            RamDoota.us © 2025. All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
 

@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('/src/assets/font/Qylen.otf') format('otf'),
+       url('/src/assets/font/Qylen.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 * {
     font-family: "DM Sans", serif;
@@ -48,3 +57,25 @@
     }
   }
   
+
+
+  /* Custom slider styles */
+.slick-slider-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #f97316 !important;
+  font-size: 30px;
+}
+
+.slick-dots li button:before {
+  color: #f97316 !important;
+  font-size: 12px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #f97316 !important;
+}
