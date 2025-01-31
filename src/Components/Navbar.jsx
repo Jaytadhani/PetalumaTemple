@@ -1,28 +1,24 @@
-import { useRef, useState } from "react"
-import { Link } from "react-router-dom"
-import { HiMenu, HiPhone, HiChevronDown, HiX } from "react-icons/hi"
-import Logo from "../assets/Logo1.png"
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { HiMenu, HiPhone, HiChevronDown, HiX } from "react-icons/hi";
+import Logo from "../assets/Logo1.png";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(null);
   const navRef = useRef();
 
-
-
-  useGSAP(()=>{
-    const tl = gsap.timeline()
-    tl.from('.anim', {
+  useGSAP(() => {
+    gsap.from(".anim", {
       duration: 1,
-      y:-100,
-      delay:0.1,
-      opacity:0,
-    filter:"blur(10px)",
-      stagger:0.05
-    })
-  })
+      y: -100,
+      opacity: 0,
+      filter: "blur(10px)",
+      stagger: 0.05,
+    });
+  });
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -33,7 +29,6 @@ export default function Navbar() {
         { name: "Donation", path: "/donation" },
         { name: "Donation Causes", path: "/donation-causes" },
         { name: "Direct Donation", path: "/direct-donation" },
-      
       ],
     },
     {
@@ -43,15 +38,12 @@ export default function Navbar() {
         { name: "Who We Are", path: "/who-we-are" },
         { name: "Our Vision", path: "/vision" },
         { name: "Plan a Visit", path: "/visit" },
-      
       ],
     },
-    
     { name: "Event", path: "/event" },
     { name: "About Us", path: "/about" },
     { name: "Contacts", path: "/contact" },
-  
-  ]
+  ];
 
   return (
     <nav
@@ -62,37 +54,38 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img src={Logo} alt="Shakti Logo" className="h-16 anim w-16  " />
+            <img src={Logo} alt="Shakti Logo" className="h-16 anim w-16" />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
-            {navLinks.map((link) => (
-              <div key={link.name} className="relative anim">
+            {navLinks.map((link, index) => (
+              <div
+                key={link.name}
+                className="relative anim"
+                onMouseEnter={() => setDropdownOpen(index)}
+                onMouseLeave={() => setDropdownOpen(null)}
+              >
                 {link.dropdown ? (
-                  <div>
-                    <button
-                      onMouseEnter={() => setDropdownOpen(!dropdownOpen)}
-                      className="text-gray-800 hover:text-orange-600 flex items-center space-x-1"
-                    >
+                  <>
+                    <button className="text-gray-800 hover:text-orange-600 flex items-center space-x-1">
                       <span>{link.name}</span>
                       <HiChevronDown className="h-4 w-4" />
                     </button>
-                    {dropdownOpen && (
+                    {dropdownOpen === index && (
                       <div className="absolute top-full left-0 w-48 bg-white rounded-md shadow-lg py-2">
                         {link.dropdown.map((item) => (
                           <Link
                             key={item.name}
                             to={item.path}
                             className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                            onClick={() => setDropdownOpen(false)}
                           >
                             {item.name}
                           </Link>
                         ))}
                       </div>
                     )}
-                  </div>
+                  </>
                 ) : (
                   <Link
                     to={link.path}
@@ -106,13 +99,13 @@ export default function Navbar() {
           </div>
 
           {/* Contact and Donate */}
-          <div className="hidden  lg:flex lg:items-center lg:space-x-4">
+          <div className="hidden lg:flex lg:items-center lg:space-x-4">
             <a
-              href="tel:+150351 94060"
+              href="tel:1800458567"
               className="text-gray-800 flex items-center anim space-x-2"
             >
               <HiPhone className="h-5 w-5" />
-              <span>+15 0351 94060</span>
+              <span>1 800 458 56 97</span>
             </a>
             <Link
               to="/donate"
@@ -127,11 +120,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden text-gray-800"
           >
-            {isOpen ? (
-              <HiX className="h-6 w-6" />
-            ) : (
-              <HiMenu className="h-6 w-6" />
-            )}
+            {isOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
           </button>
         </div>
       </div>
@@ -185,4 +174,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
