@@ -4,7 +4,78 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('/src/assets/font/Qylen.otf') format('otf'),
+       url('/src/assets/font/Qylen.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 * {
     font-family: "DM Sans", serif;
+}
+
+.puff-in-center {
+	-webkit-animation: puff-in-center 1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	        animation: puff-in-center 1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+
+ @-webkit-keyframes puff-in-center {
+    0% {
+      -webkit-transform: scale(2);
+              transform: scale(2);
+      -webkit-filter: blur(4px);
+              filter: blur(4px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes puff-in-center {
+    0% {
+      -webkit-transform: scale(2);
+              transform: scale(2);
+      -webkit-filter: blur(4px);
+              filter: blur(4px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  
+
+
+  /* Custom slider styles */
+.slick-slider-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #f97316 !important;
+  font-size: 30px;
+}
+
+.slick-dots li button:before {
+  color: #f97316 !important;
+  font-size: 12px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #f97316 !important;
 }
