@@ -54,11 +54,14 @@ export default function Navbar() {
   ]
 
   return (
-    <nav ref={navRef} className="fixed top-0 font-bold left-0 right-0 z-50 anim bg-white shadow-md h-18">
+    <nav
+      ref={navRef}
+      className="fixed top-0 font-bold left-0 right-0 z-50 anim bg-white shadow-md h-18"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">  
+          <Link to="/" className="flex-shrink-0">
             <img src={Logo} alt="Shakti Logo" className="h-16 anim w-16  " />
           </Link>
 
@@ -70,7 +73,6 @@ export default function Navbar() {
                   <div>
                     <button
                       onMouseEnter={() => setDropdownOpen(!dropdownOpen)}
-                      
                       className="text-gray-800 hover:text-orange-600 flex items-center space-x-1"
                     >
                       <span>{link.name}</span>
@@ -92,7 +94,10 @@ export default function Navbar() {
                     )}
                   </div>
                 ) : (
-                  <Link to={link.path} className="text-gray-800 hover:text-orange-600">
+                  <Link
+                    to={link.path}
+                    className="text-gray-800 hover:text-orange-600"
+                  >
                     {link.name}
                   </Link>
                 )}
@@ -102,9 +107,12 @@ export default function Navbar() {
 
           {/* Contact and Donate */}
           <div className="hidden  lg:flex lg:items-center lg:space-x-4">
-            <a href="tel:1800458567" className="text-gray-800 flex items-center anim space-x-2">
+            <a
+              href="tel:+150351 94060"
+              className="text-gray-800 flex items-center anim space-x-2"
+            >
               <HiPhone className="h-5 w-5" />
-              <span>1 800 458 56 97</span>
+              <span>+15 0351 94060</span>
             </a>
             <Link
               to="/donate"
@@ -115,8 +123,15 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-gray-800">
-            {isOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden text-gray-800"
+          >
+            {isOpen ? (
+              <HiX className="h-6 w-6" />
+            ) : (
+              <HiMenu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
@@ -128,7 +143,9 @@ export default function Navbar() {
             {navLinks.map((link) =>
               link.dropdown ? (
                 <div key={link.name} className="space-y-1">
-                  <div className="text-gray-800 px-3 py-2 font-medium">{link.name}</div>
+                  <div className="text-gray-800 px-3 py-2 font-medium">
+                    {link.name}
+                  </div>
                   <div className="pl-4 space-y-1">
                     {link.dropdown.map((item) => (
                       <Link
@@ -151,7 +168,7 @@ export default function Navbar() {
                 >
                   {link.name}
                 </Link>
-              ),
+              )
             )}
             <div className="px-3 py-2">
               <Link
@@ -166,6 +183,6 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-  )
+  );
 }
 
