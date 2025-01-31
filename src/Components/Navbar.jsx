@@ -10,8 +10,6 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const navRef = useRef();
 
-
-
   useGSAP(()=>{
     const tl = gsap.timeline()
     tl.from('.anim', {

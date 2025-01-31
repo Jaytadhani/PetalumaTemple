@@ -258,13 +258,13 @@ const Home = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <p className="text-lg mb-4">
+                <p className="text-xl mb-4">
                   The Sonoma Hanuman Temple is a spiritual sanctuary dedicated
                   to fostering love, devotion, and community. Our temple serves
                   as a bridge between ancient wisdom and modern life, offering a
                   space for spiritual growth and cultural celebration.
                 </p>
-                <p className="text-lg">
+                <p className="text-xl">
                   We welcome people from all walks of life to join our community
                   and experience the transformative power of devotion and
                   service.

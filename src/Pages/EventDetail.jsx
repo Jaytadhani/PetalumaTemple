@@ -89,6 +89,7 @@ const EventDetail = () => {
       <main className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 md:py-12 lg:py-16">
         <div className="grid lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
           {/* Main Content */}
+          
           <div className="lg:col-span-2 space-y-3 sm:space-y-6 md:space-y-8">
             <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6 lg:p-8">
               <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-600 mb-2 sm:mb-4">
