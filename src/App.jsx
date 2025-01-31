@@ -71,7 +71,6 @@ const App = () => {
             <Route path="/donation-causes" element={<DonationCauses />} />
           <Route path="/direct-donation" element={<DirectDonation />} />
           <Route path="/donation/:id" element={<DonationDetail />} />
-
           </Routes>
         </PageWrapper>
       </Router>

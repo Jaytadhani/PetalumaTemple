@@ -323,7 +323,7 @@ const Home = () => {
                   ></textarea>
                   <button
                     type="submit"
-                    className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300"
+                    className="bg-orange-600 text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300"
                   >
                     Send Message
                   </button>
