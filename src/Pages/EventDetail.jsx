@@ -7,11 +7,13 @@ import { FaCalendarAlt, FaFacebookF, FaTwitter } from "react-icons/fa"
 import { FaLocationArrow } from "react-icons/fa6"
 import { BiLogoGmail } from "react-icons/bi"
 import { events } from "../data/eventData"
+import Registerpopup from "../Components/Registerpopup"
 
 const EventDetail = () => {
   const { id } = useParams()
   const event = events.find((e) => e.id === Number(id))
   const [showShareMenu, setShowShareMenu] = useState(false)
+  const [modal, setmodal] = useState(false)
 
   if (!event) {
     return (
@@ -126,7 +128,7 @@ const EventDetail = () => {
                     >
                       {event.registrationStatus}
                     </span>
-                    <button className="w-full mt-3 sm:mt-4 bg-orange-600 text-white py-2 sm:py-3 rounded-lg text-sm sm:text-base hover:bg-orange-700 transition">
+                    <button onClick={()=>setmodal(true)} className="w-full mt-3 sm:mt-4 bg-orange-600 text-white py-2 sm:py-3 rounded-lg text-sm sm:text-base hover:bg-orange-700 transition">
                       Register Now
                     </button>
                   </div>
@@ -262,6 +264,11 @@ const EventDetail = () => {
           </div>
         </div>
       </main>
+      {
+        modal && (
+          <Registerpopup setmodal={setmodal}/>
+        )
+      }
     </Layout>
   )
 }
