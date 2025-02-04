@@ -4,19 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: 'MyCustomFont';
   src: url('/src/assets/font/Qylen.otf') format('otf'),
        url('/src/assets/font/Qylen.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 
 
 * {
     font-family: "DM Sans", serif;
+    
 }
+
+.Sanskrit {
+    font-family: "Sanskrit";
+}
+
+
+.MyCustomFont {
+  font-family: "Stardom-Regular", serif;
+}
+
 
 .puff-in-center {
 	-webkit-animation: puff-in-center 1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
@@ -78,4 +89,12 @@
 
 .slick-dots li.slick-active button:before {
   color: #f97316 !important;
+}
+
+
+/* for Sloka */
+.Sanskrit {
+  position: relative;
+  z-index: 1; /* Ensure it appears above other content */
+  margin-top: -50px; /* Adjust this value to control overlap */
 }

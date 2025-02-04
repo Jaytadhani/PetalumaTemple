@@ -11,7 +11,7 @@ import { BsFillCalendarDateFill, BsWhatsapp } from "react-icons/bs";
 import { FaCalendarAlt, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa6";
 import { BiLogoGmail } from "react-icons/bi";
-import { events } from "../data/eventData";
+
 import Registerpopup from "../Components/Registerpopup";
 
 const EventDetail = () => {
