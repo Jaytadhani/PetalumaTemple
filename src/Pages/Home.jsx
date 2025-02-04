@@ -8,9 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import EventSlider from "./EventSlider";
 import whoweare from "../assets/whoweare.svg";
 import MarqueeSlider from "../Components/MarqueeSlider";
-
+import vision from "../assets/vision1.svg"
 import { FaArrowRight, FaCalendar, FaHeart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,11 +84,20 @@ const Home = () => {
           <MarqueeSlider />
         </div>
 
-        <section className="Sanskrit pt-10 py-16">
+        <section className="py-10 bg-amber-50">
           <div className="container mx-auto px-4">
-            <p>असतो मा सद्गमय । तमसो मा ज्योतिर्गमय । मृत्योर्मा अमृतं गमय ॥</p>
+            <div className="max-w-5xl mx-auto text-center">
+              <h2 className="text-3xl md:text-3xl font-sanskrit font-bold text-orange-600 mb-4">
+                असतो मा सद्गमय । तमसो मा ज्योतिर्गमय । मृत्योर्मा अमृतं गमय ॥
+              </h2>
+              <p className="text-lg text-orange-800">
+                Lead me from the unreal to the real. Lead me from darkness to
+                light. Lead me from death to immortality.
+              </p>
+            </div>
           </div>
         </section>
+
         {/* Upcoming Events */}
         <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4">
@@ -95,6 +105,7 @@ const Home = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Upcoming <span className="text-orange-500">Events</span>
               </h2>
+
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                 Join us for transformative experiences that nourish your mind,
                 body, and soul
@@ -128,19 +139,25 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="Sanskrit">
-          <div className="container mx-auto px-4">
-            <p>
-              ॐ सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः।
-              <br />
-              सर्वे भद्राणि पश्यन्तु, मा कश्चिद् दुःखभाग्भवेत्॥
-            </p>
-          </div>
-        </section>
-
         {/* Experience Inner Peace */}
-        <section className="py-24 bg-orange-50">
+        <section className="py-6 bg-orange-50">
           <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 py-6">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2
+                  className="text-3xl md:text-3xl font-sanskrit font-bold text-orange-600 mb-2 "
+                  style={{ lineHeight: "inherit" }}
+                >
+                  ॐ सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः। <br />
+                  सर्वे भद्राणि पश्यन्तु, मा कश्चिद् दुःखभाग्भवेत्॥
+                </h2>
+                <p className="text-lg text-orange-800 ">
+                  "May all be happy, May all be free from illness, May all see
+                  what is auspicious, May no one suffer.""
+                </p>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               <div className="relative">
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-orange-200 rounded-full opacity-50" />
@@ -169,15 +186,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="Sanskrit">
-          <div className="container mx-auto px-4">
-            <p>
-              ॐ सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः।
-              <br />
-              सर्वे भद्राणि पश्यन्तु, मा कश्चिद् दुःखभाग्भवेत्॥
-            </p>
-          </div>
-        </section>
 
         {/* Section 4: Stories */}
         <section className="py-16">
@@ -185,6 +193,7 @@ const Home = () => {
             <h2 className="text-3xl font-semibold text-orange-600 mb-8 text-center">
               Stories of Transformation
             </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map((story) => (
                 <div
@@ -192,7 +201,7 @@ const Home = () => {
                   className="bg-white rounded-lg shadow-md p-6 fade-in"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src={vision}
                     alt={`Story ${story}`}
                     className="w-24 h-24 rounded-full mx-auto mb-4"
                   />
@@ -207,11 +216,20 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="Sanskrit">
+
+        <section className="py-4">
           <div className="container mx-auto px-4">
-            <p>सत्यं वद, धर्मं चर</p>
+            <div className="max-w-5xl mx-auto text-center">
+              <h2 className="text-3xl md:text-3xl font-sanskrit font-bold text-orange-600 mb-4">
+                सत्यं वद, धर्मं चर ॥
+              </h2>
+              <p className="text-lg text-orange-800">
+                "Speak the truth, follow righteousness."
+              </p>
+            </div>
           </div>
         </section>
+
         {/* Section 5: Livestream */}
         <section className="py-16 bg-orange-100">
           <div className="container mx-auto px-4">
@@ -230,9 +248,9 @@ const Home = () => {
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-8 md:mb-0">
                 <img
-                  src="https://plus.unsplash.com/premium_photo-1733342422588-c2fc9e279836?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src={vision}
                   alt="Our Vision"
-                  className="rounded-lg shadow-lg"
+                  className="rounded-lg shadow-lg w-[70%] h-[70%] mx-auto"
                 />
               </div>
               <div className="md:w-1/2 md:pl-8">
@@ -248,15 +266,27 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </section>
-        <section className="Sanskrit">
-          <div className="container mx-auto px-4">
-            <p>
-              कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।
-              <br />
-              मा कर्मफलहेतुर्भूर्मा ते संगोऽस्त्वकर्मणि॥
-            </p>
-          </div>
+
+          <section className="py-6 mt-10">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto text-center">
+                <h2
+                  className="text-3xl md:text-3xl font-sanskrit font-bold text-orange-600 mb-4"
+                  style={{ lineHeight: "inherit" }}
+                >
+                  कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।
+                  <br />
+                  मा कर्मफलहेतुर्भूर्मा ते संगोऽस्त्वकर्मणि॥
+                </h2>
+                <p className="text-lg text-orange-800">
+                  "You have the right to perform your actions, But you are not
+                  entitled to the result of the actions. Do not let the result
+                  be the purpose of your actions, And therefore you won't be
+                  attached to not doing your duty."
+                </p>
+              </div>
+            </div>
+          </section>
         </section>
 
         {/* Section 8: Previous Donation Data */}
@@ -283,16 +313,6 @@ const Home = () => {
                 <p className="text-lg">Events Organized</p>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className=" py-10 ">
-          <div className="container mx-auto px-4">
-            <p className="text-center text-orange-500 font-semibold leading-[55px] tracking-widest text-3xl">
-              ॐ पूर्णमदः पूर्णमिदं पूर्णात् पूर्णमुदच्यते ||
-              <br />
-              पूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ||
-            </p>
           </div>
         </section>
 
@@ -333,10 +353,27 @@ const Home = () => {
             <h2 className="text-3xl font-semibold text-orange-600 mb-8 text-center">
               Support Our Temple
             </h2>
-            <p className="text-center text-lg mb-8">
+            <p className="text-center text-lg ">
               Your generous contributions help us maintain the temple and
               continue our spiritual and community services.
             </p>
+            <div className="container mx-auto px-4 py-6">
+              <div className="max-w-5xl mx-auto text-center">
+                <h2
+                  className="text-2xl md:text-2xl font-sanskrit font-bold text-orange-600 mb-4"
+                  style={{ lineHeight: "inherit" }}
+                >
+                  दानं धर्मस्य तात्त्विकं निहन्ति समसङ्ग्रहम्। यश्च तु
+                  धर्मनिष्ठायाम्, भाग्यं सुकृतिना वितम्॥
+                </h2>
+                <p className="text-lg text-orange-800">
+                  "The donation that is done with true understanding and without
+                  attachment leads to the fulfillment of virtue. One who gives,
+                  with righteousness and sincerity, attains prosperity and good
+                  fortune."
+                </p>
+              </div>
+            </div>
             <div className="flex justify-center">
               <button className="bg-orange-500 text-white py-3 px-8 rounded-full text-lg hover:bg-orange-600 transition duration-300">
                 Donate Now

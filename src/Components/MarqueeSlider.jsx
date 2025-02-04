@@ -3,7 +3,9 @@ import symbol2 from '../assets/img/symbol2.png'
 import symbol3 from '../assets/img/symbol3.jpg'
 import symbol4 from '../assets/img/symbol4.jpg' 
 import symbol5 from '../assets/img/symbol5.png'
-
+import symbol6 from '../assets/img/symbol6.png'
+import symbol7 from '../assets/img/symbol7.png'
+import symbol8 from '../assets/img/symbol8.png'
 
 
 const MarqueeSlider = () => {
@@ -13,6 +15,9 @@ const MarqueeSlider = () => {
     symbol3,
     symbol4,
     symbol5,
+    symbol6,
+    symbol7,
+    symbol8,
   ]
 
   const sliderStyle = {
@@ -27,7 +32,7 @@ const MarqueeSlider = () => {
   const slideTrackStyle = {
     display: "flex",
     width: "calc(250px * 8)", 
-    animation: "marquee 20s linear infinite",
+    animation: "marquee 50s linear infinite",
   };
 
   const slideStyle = {
@@ -36,7 +41,7 @@ const MarqueeSlider = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop:"10px"
+    marginTop: "10px",
   };
 
   const gradientOverlayStyle = {
@@ -63,7 +68,7 @@ const MarqueeSlider = () => {
             <img
               src={img || "/placeholder.svg"}
               alt={`Slide ${index + 1}`}
-              style={{ height: "100%", width: "100%", objectFit: "contain" }}
+              style={{ height: "100%", width: "100%", objectFit: "contain", marginRight: "250px" }}
             />
           </div>
         ))}
