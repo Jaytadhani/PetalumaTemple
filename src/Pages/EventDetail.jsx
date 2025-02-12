@@ -1,30 +1,58 @@
-import React, { useState } from "react"
-import { useParams, Link } from "react-router-dom"
-import Layout from "../Components/Layout"
-import { MdOutlineAccessTime, MdOutlinePhoneInTalk, MdPeople, MdShare } from "react-icons/md"
-import { BsFillCalendarDateFill, BsWhatsapp } from "react-icons/bs"
-import { FaCalendarAlt, FaFacebookF, FaTwitter } from "react-icons/fa"
-import { FaLocationArrow } from "react-icons/fa6"
-import { BiLogoGmail } from "react-icons/bi"
-import { events } from "../data/eventData"
-import Registerpopup from "../Components/Registerpopup"
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import Layout from "../Components/Layout";
+import { MdOutlineAccessTime, MdOutlinePhoneInTalk, MdPeople, MdShare } from "react-icons/md";
+import { BsFillCalendarDateFill, BsWhatsapp } from "react-icons/bs";
+import { FaCalendarAlt, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaLocationArrow } from "react-icons/fa6";
+import { BiLogoGmail } from "react-icons/bi";
+import { fetchEvents, requestToken } from "../services/api";
+import Registerpopup from "../Components/Registerpopup";
+import Loader from "../Components/Loader";
 
 const EventDetail = () => {
-  const { id } = useParams()
-  const event = events.find((e) => e.id === Number(id))
-  const [showShareMenu, setShowShareMenu] = useState(false)
-  const [modal, setmodal] = useState(false)
+  const { id } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [modal, setmodal] = useState(false);
 
-  if (!event) {
+  useEffect(() => {
+    const loadEventDetail = async () => {
+      try {
+        const token = await requestToken();
+        const events = await fetchEvents(token);
+        const foundEvent = events.find((e) => e.id === parseInt(id));
+        
+        if (foundEvent) {
+          setEvent(foundEvent);
+        } else {
+          setError("Event not found");
+        }
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    loadEventDetail();
+  }, [id]);
+
+  if (loading) return <div>
+    <Loader/>
+  </div>;
+  if (error || !event) {
     return (
       <div className="min-h-screen flex flex-col">
         <Layout>
           <main className="flex-grow container mx-auto px-4 py-8">
             <div className="text-center">
               <h1 className="text-3xl font-bold text-orange-600 mb-4">Event Not Found</h1>
-              <p className="text-gray-600 mb-6">The event you're looking for doesn’t exist or has been removed.</p>
+              <p className="text-gray-600 mb-6">The event you're looking for doesn't exist or has been removed.</p>
               <Link
-                to="/event"
+                to="/events"
                 className="inline-block bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition"
               >
                 View All Events
@@ -33,16 +61,18 @@ const EventDetail = () => {
           </main>
         </Layout>
       </div>
-    )
+    );
   }
 
-  const relatedEvents = events.filter((e) => e.id !== event.id && e.type === event.type).slice(0, 3)
+  // const relatedEvents = events
+  //   .filter((e) => e.id !== event.id && e.type === event.type)
+  //   .slice(0, 3);
 
   return (
     <Layout>
       {/* Hero Section */}
       <div className="relative h-[35vh] md:h-[50vh] lg:h-[60vh] w-full">
-        <img src={event.img || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
+        <img src={event.image_full_url || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
           <div className="container mx-auto px-2 sm:px-4 h-full flex items-end pb-4 sm:pb-8 md:pb-12">
             <div className="text-white w-full">
@@ -76,7 +106,7 @@ const EventDetail = () => {
                 About the Event
               </h2>
               <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6">
-                {event.longDescription || event.description}
+                {event.long_description }
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
@@ -95,11 +125,11 @@ const EventDetail = () => {
                     </div>
                     <div className="flex items-center gap-2 sm:gap-3">
                       <BiLogoGmail className="text-orange-500 flex-shrink-0 text-sm sm:text-base" />
-                      <span className="text-sm sm:text-base text-gray-700 break-all">{event.Email}</span>
+                      <span className="text-sm sm:text-base text-gray-700 break-all">{event.email}</span>
                     </div>
                     <div className="flex items-center gap-2 sm:gap-3">
                       <MdOutlinePhoneInTalk className="text-orange-500 flex-shrink-0 text-sm sm:text-base" />
-                      <span className="text-sm sm:text-base text-gray-700">{event.Phone}</span>
+                      <span className="text-sm sm:text-base text-gray-700">{event.phone}</span>
                     </div>
                     {event.language && (
                       <div className="flex items-center gap-2 sm:gap-3">
@@ -107,10 +137,10 @@ const EventDetail = () => {
                         <span className="text-sm sm:text-base text-gray-700">{event.language}</span>
                       </div>
                     )}
-                    {event.dresscode && (
+                    {event.dress_code && (
                       <div className="flex items-center gap-2 sm:gap-3">
                         <span className="text-orange-500 flex-shrink-0 text-sm sm:text-base">👔</span>
-                        <span className="text-sm sm:text-base text-gray-700">{event.dresscode}</span>
+                        <span className="text-sm sm:text-base text-gray-700">{event.dress_code}</span>
                       </div>
                     )}
                   </div>
@@ -123,10 +153,10 @@ const EventDetail = () => {
                   <div className="text-center">
                     <span
                       className={`inline-block px-3 sm:px-4 py-1 sm:py-2 rounded-full text-sm sm:text-base text-white ${
-                        event.registrationStatus === "Open" ? "bg-green-500" : "bg-yellow-500"
+                        event.registration_status === "Open" ? "bg-green-500" : "bg-yellow-500"
                       }`}
                     >
-                      {event.registrationStatus}
+                      {event.registration_status}
                     </span>
                     <button onClick={()=>setmodal(true)} className="w-full mt-3 sm:mt-4 bg-orange-600 text-white py-2 sm:py-3 rounded-lg text-sm sm:text-base hover:bg-orange-700 transition">
                       Register Now
@@ -135,13 +165,13 @@ const EventDetail = () => {
                 </div>
               </div>
 
-              {event.schedule && (
+              {event.events_schedule && (
                 <div>
                   <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-600 mb-2 sm:mb-4">
                     Event Schedule
                   </h3>
                   <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                    {event.schedule.map((item, index) => (
+                    {event.events_schedule.map((item, index) => (
                       <div
                         key={index}
                         className="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 p-2 sm:p-4 bg-orange-50 rounded-lg"
@@ -237,7 +267,7 @@ const EventDetail = () => {
             )}
 
             {/* Related Events */}
-            <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6">
+            {/* <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 md:p-6">
               <h3 className="text-base sm:text-lg md:text-xl font-semibold text-orange-600 mb-2 sm:mb-4">
                 Related Events
               </h3>
@@ -260,7 +290,7 @@ const EventDetail = () => {
                   </Link>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </main>
@@ -270,8 +300,7 @@ const EventDetail = () => {
         )
       }
     </Layout>
-  )
-}
+  );
+};
 
-export default EventDetail
-
+export default EventDetail;

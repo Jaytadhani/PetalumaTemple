@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Layout from '../Components/Layout'
+import SquarePaymentForm from "../Components/SquarePaymentForm"
 
 const dummyCauses = [
   {
@@ -50,18 +51,30 @@ const DonationDetail = () => {
   const [cause, setCause] = useState(null)
   const [donationAmount, setDonationAmount] = useState("")
   const [customAmount, setCustomAmount] = useState("")
+  const [showPaymentForm, setShowPaymentForm] = useState(false)
 
   useEffect(() => {
     const selectedCause = dummyCauses.find((c) => c.id === Number.parseInt(id))
     setCause(selectedCause)
   }, [id])
 
-  const handleDonate = async (e) => {
+  const handleDonateClick = (e) => {
     e.preventDefault()
     const finalAmount = customAmount || donationAmount
-    // TODO: Implement Square Payment API integration
-    console.log("Processing donation:", { causeId: cause.id, amount: finalAmount })
-    // After successful payment, you can update the cause's collected amount or redirect the user
+    if (finalAmount) {
+      setShowPaymentForm(true)
+    }
+  }
+
+  const handlePaymentSuccess = async (token) => {
+    // TODO: Send the token to your server to process the payment
+    console.log("Payment successful, token:", token)
+    // Update the cause's collected amount or redirect the user
+  }
+
+  const handlePaymentError = (errors) => {
+    console.error("Payment failed:", errors)
+    // Display error message to the user
   }
 
   if (!cause) {
@@ -70,84 +83,87 @@ const DonationDetail = () => {
 
   return (
     <Layout>
-    <div className="bg-white rounded-lg shadow-xl p-8 my-20 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold text-orange-800 mb-6">{cause.name}</h1>
-      <img
-        src={cause.image || "/placeholder.svg"}
-        alt={cause.name}
-        className="w-full h-64 object-cover rounded-lg mb-8"
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div>
-          <h2 className="text-2xl font-semibold text-orange-700 mb-4">About This Cause</h2>
-          <p className="text-gray-700 mb-4">{cause.description}</p>
-          <h3 className="text-xl font-semibold text-orange-600 mb-2">Benefits</h3>
-          <ul className="list-disc list-inside text-gray-700">
-            {cause.benefits.map((benefit, index) => (
-              <li key={index}>{benefit}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <div className="bg-orange-100 rounded-lg p-6 mb-6">
-            <h3 className="text-xl font-semibold text-orange-800 mb-2">Donation Progress</h3>
-            <p className="text-gray-700 mb-2">Goal: ${cause.requiredAmount.toLocaleString()}</p>
-            <p className="text-gray-700 mb-2">Raised: ${cause.collectedAmount.toLocaleString()}</p>
-            <div className="w-full bg-orange-200 rounded-full h-4 mb-2">
-              <div
-                className="bg-orange-500 h-4 rounded-full"
-                style={{ width: `${(cause.collectedAmount / cause.requiredAmount) * 100}%` }}
-              ></div>
-            </div>
-            <p className="text-sm text-gray-600">
-              {Math.round((cause.collectedAmount / cause.requiredAmount) * 100)}% of goal reached
-            </p>
+      <div className="bg-white rounded-lg shadow-xl p-8 my-20 max-w-4xl mx-auto">
+        <h2 className="text-3xl font-semibold text-orange-800 mb-4">{cause.title}</h2>
+        <p className="text-gray-700 mb-6">{cause.description}</p>
+        <img
+          src={cause.imageUrl || "/placeholder.svg"}
+          alt={cause.title}
+          className="w-full h-64 object-cover mb-6 rounded-lg"
+        />
+
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <p className="text-gray-700">Target Amount:</p>
+            <p className="text-xl font-semibold text-orange-800">${cause.targetAmount}</p>
           </div>
-          <form onSubmit={handleDonate} className="space-y-4">
+          <div>
+            <p className="text-gray-700">Collected Amount:</p>
+            <p className="text-xl font-semibold text-orange-800">${cause.collectedAmount}</p>
+          </div>
+        </div>
+
+        <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+          <div
+            className="bg-orange-500 h-2.5 rounded-full"
+            style={{ width: `${(cause.collectedAmount / cause.targetAmount) * 100}%` }}
+          ></div>
+        </div>
+
+        {!showPaymentForm ? (
+          <form onSubmit={handleDonateClick} className="space-y-4">
             <h3 className="text-xl font-semibold text-orange-800 mb-2">Make Your Donation</h3>
             <div className="grid grid-cols-3 gap-2">
-  {[25, 50, 100].map((amount) => (
-    <button
-      key={amount}
-      type="button"
-      onClick={() => {
-        setDonationAmount(amount);
-        setCustomAmount(amount.toString()); // Update custom amount field
-      }}
-      className={`py-2 rounded-full transition duration-300 ${
-        donationAmount === amount && !customAmount
-          ? "bg-orange-500 text-white"
-          : "bg-orange-100 text-orange-800 hover:bg-orange-200"
-      }`}
-    >
-      ${amount}
-    </button>
-  ))}
-</div>
+              {[25, 50, 100].map((amount) => (
+                <button
+                  key={amount}
+                  type="button"
+                  onClick={() => {
+                    setDonationAmount(amount)
+                    setCustomAmount(amount.toString())
+                  }}
+                  className={`py-2 rounded-full transition duration-300 ${
+                    donationAmount === amount && !customAmount
+                      ? "bg-orange-500 text-white"
+                      : "bg-orange-100 text-orange-800 hover:bg-orange-200"
+                  }`}
+                >
+                  ${amount}
+                </button>
+              ))}
+            </div>
 
-<div className="relative">
-  <input
-    type="number"
-    value={customAmount}
-    onChange={(e) => {
-      setCustomAmount(e.target.value);
-      setDonationAmount(""); // Reset donation amount selection when typing
-    }}
-    placeholder="Enter custom amount"
-    className="w-full p-2 border border-orange-300 rounded-full pl-8 focus:outline-none focus:ring-2 focus:ring-orange-500"
-  />
-  <span className="absolute left-3 top-2 text-gray-500">$</span>
-</div>
+            <div className="relative">
+              <input
+                type="number"
+                value={customAmount}
+                onChange={(e) => {
+                  setCustomAmount(e.target.value)
+                  setDonationAmount("")
+                }}
+                placeholder="Enter custom amount"
+                className="w-full p-2 border border-orange-300 rounded-full pl-8 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
+              <span className="absolute left-3 top-2 text-gray-500">$</span>
+            </div>
             <button
               type="submit"
               className="w-full bg-orange-500 text-white py-3 rounded-full hover:bg-orange-600 transition duration-300"
             >
-              Donate Now
+              Proceed to Payment
             </button>
           </form>
-        </div>
+        ) : (
+          <div>
+            <h3 className="text-xl font-semibold text-orange-800 mb-4">Complete Your Donation</h3>
+            <SquarePaymentForm
+              amount={customAmount || donationAmount}
+              onPaymentSuccess={handlePaymentSuccess}
+              onPaymentError={handlePaymentError}
+            />
+          </div>
+        )}
       </div>
-    </div>
     </Layout>
   )
 }
