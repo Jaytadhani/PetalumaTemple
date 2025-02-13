@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import Layout from "../Components/Layout";
-import backimg from "../assets/homeback.png";
+
+import backimg from "../assets/homeback.jpg";
 import YouTubeLiveStream from "../Components/YouTubeLiveStream";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -11,6 +11,7 @@ import MarqueeSlider from "../Components/MarqueeSlider";
 import vision from "../assets/vision1.svg"
 import { FaArrowRight, FaCalendar, FaHeart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Layout from "../components/layout";
 
 
 gsap.registerPlugin(ScrollTrigger);

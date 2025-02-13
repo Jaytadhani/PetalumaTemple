@@ -4,9 +4,9 @@ import Layout from "../Components/Layout"
 const Donation = () => {
   return (
     <Layout>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto mt-20 px-4">
         <h1 className="text-4xl font-bold text-orange-600 mb-6">How You Can Be Part of This Divine Journey</h1>
-        <p className="mb-4">
+        <p className="mb-4 ">
           Your involvement in this project is not just about contribution—it's about becoming a medium for Hanuman Ji's
           infinite blessings. Every act of support, be it a kind word, a shared idea, or a financial contribution,
           carries his divine touch.
@@ -25,7 +25,7 @@ const Donation = () => {
           of this eternal blessing, and together, let's create a sanctuary that stands as a testament to faith, hope,
           and love for generations to come.
         </p>
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center py-4">
           <button className="bg-orange-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition-colors">
             Make a Contribution
           </button>

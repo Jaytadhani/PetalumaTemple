@@ -68,12 +68,13 @@ async function fetchWithAuth(url, options = {}) {
 
   if (response.status === 401) {
     // Token might be expired, try to refresh
-    await refreshToken(); // You'd need to implement proper refresh token storage and retrieval
+    await refreshToken(); 
     return fetchWithAuth(url, options);
   }
 
   return response;
 }
+
 
 export async function getEventsList() {
   const response = await fetchWithAuth(`${BASE_URL}/events-list`);
@@ -84,6 +85,12 @@ export async function getPastEventsList() {
   const response = await fetchWithAuth(`${BASE_URL}/past-events-list`);
   return response.json();
 }
+
+export async function getOurVision() {
+  const response = await fetchWithAuth(`${BASE_URL}/vision_list`);
+  return response.json();
+}
+
 
 export async function getLoggedInUser() {
   const response = await fetchWithAuth(`${BASE_URL}/user`);
@@ -98,6 +105,9 @@ async function testAPI() {
 
     const pastEvents = await getPastEventsList();
     console.log("Past Events:", pastEvents);
+
+    const OurVision = await getOurVision();
+    console.log("Events:", OurVision);
 
     const user = await getLoggedInUser();
     console.log("Logged in user:", user);

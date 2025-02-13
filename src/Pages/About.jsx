@@ -125,7 +125,7 @@ const AboutUs = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-50/90"></div>
           
-          <div ref={heroContentRef} className="relative h-full flex flex-col items-center justify-center text-center px-4">
+          <div ref={heroContentRef} className="relative h-full flex flex-col items-center justify-center text-center px-4 mt-16">
             <FaOm className="text-5xl md:text-7xl text-orange-500 mb-6 md:mb-8 animate-pulse" />
             <h1 className="text-4xl md:text-6xl font-bold text-orange-600 mb-4 md:mb-6">
               Welcome to Sonoma Hanuman Temple
