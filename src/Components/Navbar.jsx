@@ -102,11 +102,11 @@ export default function Navbar() {
           {/* Contact and Donate */}
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
             <a
-              href="tel:+15 0351 94060"
+              href="tel:+1 503 519 4060"
               className="text-gray-800 flex items-center anim space-x-2"
             >
               <HiPhone className="h-5 w-5" />
-              <span>+15 0351 94060</span>
+              <span>+1 503 519 4060</span>
             </a>
             <Link
               to="/donate"

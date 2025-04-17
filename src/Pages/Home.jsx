@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-import backimg from "../assets/homeback.jpg";
+import backimg from "../assets/dada2.jpg";
 import YouTubeLiveStream from "../Components/YouTubeLiveStream";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -12,6 +12,13 @@ import vision from "../assets/vision1.svg"
 import { FaArrowRight, FaCalendar, FaHeart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Layout from "../components/layout";
+import story1 from "../assets/hanuman/hanuman(20).jpg"
+import story2 from "../assets/hanuman/hanuman(13).jpg"
+import story3 from "../assets/hanuman/hanuman(25).jpg"
+import yoga from "../assets/yoga.jpg"
+import meditation from "../assets/meditation.jpg"
+import music from "../assets/music.jpg"
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,40 +58,41 @@ const Home = () => {
       <main ref={containerRef} className="mx-auto overflow-hidden">
         {/* Hero Section */}
         <section className="relative h-screen">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 z-10" />
-          <img
-            src={backimg || "/placeholder.svg"}
-            alt="Sonoma Hanuman Temple"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="relative z-20 h-full flex items-center">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl">
-                <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                  <span className="MyCustomFont block text-orange-400">
-                    Welcome to
-                  </span>
-                  <span className="block">Sonoma Hanuman Temple</span>
-                </h1>
-                <p className="pt-6 f-siz-4 sm:text-2xl lg:text-4xl text-orange-400">
-                  || धर्मो रक्षति रक्षितः ||
-                </p>
-                <p className="text-xl text-gray-200 mb-8">
-                  A sacred space for spiritual growth, community, and inner
-                  peace
-                </p>
-                <button className="group bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center gap-2">
-                  <Link to="/about"> Explore Our Temple</Link>
-                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div className="my-5">
+  <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30 z-10" />
+  <img
+    src={backimg || "/placeholder.svg"}
+    alt="Sonoma Hanuman Temple"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+  <div className="relative z-20 h-full flex items-center">
+    <div className="container mx-auto px-4">
+      <div className="max-w-3xl">
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+          <span className="MyCustomFont block text-orange-400">Welcome to</span>
+          <span className="block">Sonoma Hanuman Temple</span>
+        </h1>
+        <p className="pt-6 f-siz-4 sm:text-2xl lg:text-4xl text-orange-400">
+          || धर्मो रक्षति रक्षितः ||
+        </p>
+        <p className="text-xl text-gray-200 mb-8">
+          A sacred space for spiritual growth, community, and inner peace
+        </p>
+        <button className="group bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center gap-2">
+          <Link to="/about"> Explore Our Temple</Link>
+          <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <section className="py-6 mt-10 ">
+        <div className="my-5 mt-6">
           <MarqueeSlider />
         </div>
 
+        </section>
         <section className="py-10 bg-amber-50">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
@@ -101,44 +109,46 @@ const Home = () => {
 
         {/* Upcoming Events */}
         <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Upcoming <span className="text-orange-500">Events</span>
-              </h2>
-
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Join us for transformative experiences that nourish your mind,
-                body, and soul
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {["Yoga", "Meditation", "Music"].map((event, index) => (
-                <div
-                  key={index}
-                  className="group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <img
-                    src="https://images.unsplash.com/photo-1602192509154-0b900ee1f851?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-                    alt={event}
-                    className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold mb-3">{event} Session</h3>
-                    <p className="text-gray-600 mb-6">
-                      Join us for a rejuvenating {event.toLowerCase()} session
-                      this weekend.
-                    </p>
-                    <button className="flex items-center gap-2 text-orange-500 font-medium group-hover:text-orange-600 transition-colors">
-                      Learn More <FaArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Upcoming <span className="text-orange-500">Events</span>
+      </h2>
+      <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        Join us for transformative experiences that nourish your mind, body, and soul
+      </p>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[
+        { name: "Yoga", img: yoga },
+        { name: "Meditation", img: meditation },
+        { name: "Music", img:music }
+      ].map((event, index) => (
+        <div
+          key={index}
+          className="group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300"
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <img
+            src={event.img}
+            alt={event.name}
+            className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-300"
+          />
+          <div className="p-8">
+            <h3 className="text-2xl font-bold mb-3">{event.name} Session</h3>
+            <p className="text-gray-600 mb-6">
+              Join us for a rejuvenating {event.name.toLowerCase()} session this weekend.
+            </p>
+            <button className="flex items-center gap-2 text-orange-500 font-medium group-hover:text-orange-600 transition-colors">
+              Learn More <FaArrowRight className="w-4 h-4" />
+            </button>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
         {/* Experience Inner Peace */}
         <section className="py-6 bg-orange-50">
@@ -189,34 +199,59 @@ const Home = () => {
         </section>
 
         {/* Section 4: Stories */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-orange-600 mb-8 text-center">
-              Stories of Transformation
-            </h2>
+                  <section className="py-16">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-semibold text-orange-600 mb-8 text-center">
+                Stories of Hanuman’s Blessings
+              </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map((story) => (
-                <div
-                  key={story}
-                  className="bg-white rounded-lg shadow-md p-6 fade-in"
-                >
-                  <img
-                    src={vision}
-                    alt={`Story ${story}`}
-                    className="w-24 h-24 rounded-full mx-auto mb-4"
-                  />
-                  <p className="text-gray-600 italic mb-4">
-                    "The Sonoma Hanuman Temple has been a beacon of hope and
-                    transformation in my life. The community here is truly
-                    special."
-                  </p>
-                  <p className="font-semibold">- Devotee {story}</p>
-                </div>
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  {
+                    id: 1,
+                    title: "Hanuman and the Sanjeevani Herb",
+                    quote:
+                      "During the battle of Lanka, Hanuman flew across the Himalayas to bring the Sanjeevani herb and saved Lakshmana’s life, demonstrating his unmatched devotion to Lord Rama.",
+                    author: "Valmiki (Ramayana)",
+                    image: story1,
+                  },
+                  {
+                    id: 2,
+                    title: "Hanuman Swallowing the Sun",
+                    quote:
+                      "As a child, Hanuman mistook the sun for a ripe fruit and tried to swallow it, showcasing his immense strength even as a young vanara.",
+                    author: "Tulsidas (Hanuman Chalisa, Ramcharitmanas)",
+                    image: story2,
+                  },
+                  {
+                      id: 3,
+                      title: "Hanuman and the Nine Gems of Knowledge",
+                      quote:
+                        "After the Ramayana war, Hanuman sought deeper wisdom and was blessed by the Sun God, Surya, with the Nine Gems of Knowledge. With this divine wisdom, he became an eternal seeker of truth and devotion.",
+                      author: "Ananda Ramayana",
+                      image: story3,
+                    }
+
+                ].map((story) => (
+                  <div
+                    key={story.id}
+                    className="bg-white rounded-lg shadow-md p-6 fade-in"
+                  >
+                    <img
+                      src={story.image}
+                      alt={story.title}
+                      className="w-auto h-80 rounded-full mx-auto mb-4"
+                    />
+                    <h3 className="text-xl font-bold text-center mb-4">{story.title}</h3>
+                    <p className="text-gray-600 italic mb-6">"{story.quote}"</p>
+                    <p className="font-semibold text-center mt-4">- {story.author}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+
+
 
         <section className="py-4">
           <div className="container mx-auto px-4">
@@ -231,15 +266,20 @@ const Home = () => {
           </div>
         </section>
 
+
+
         {/* Section 5: Livestream */}
-        <section className="py-16 bg-orange-100">
-          <div className="container mx-auto px-4">
+        <section className="py-10 bg-orange-100 ">
+          <div className="container mx-auto px-4 " style={{justifyItems:"center"}}>
             <h2 className="text-3xl font-semibold text-orange-600 mb-8 text-center">
               Live Stream
             </h2>
             <YouTubeLiveStream />
           </div>
         </section>
+
+
+
         {/* Section 6: Our Vision */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
