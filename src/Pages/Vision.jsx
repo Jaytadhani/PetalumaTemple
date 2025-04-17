@@ -1,63 +1,36 @@
-import React from "react"
-import Layout from "../Components/Layout"
+  import React, { useEffect, useState } from "react"
+import Layout from "../Components/Layout";
+import { fetchOurVision, requestToken } from "../services/api";
+import Loader from "../Components/Loader";
 
 const Vision = () => {
-  const shortTermGoals = [
-    {
-      activity: "Member's Drive",
-      targetDate: "March 2025",
-      frequency: "Bi-Weekly",
-      description: "Adding 100 Members/Week",
-    },
-    {
-      activity: "Documentation & Legalities",
-      targetDate: "June 2025",
-      frequency: "One-Time",
-      description: "Establishing compliance with legal requirements",
-    },
-    {
-      activity: "Infrastructure & Property Development",
-      targetDate: "Sept 2025",
-      frequency: "Half-Yearly",
-      description: "Developing the physical premises of the temple",
-    },
-    {
-      activity: "Biweekly Yajnas (Hawans)",
-      targetDate: "Dec 2025",
-      frequency: "Bi-Weekly",
-      description: "Ceremonial fire offerings for purification and blessings",
-    },
-    {
-      activity: "Naam Sankirtan",
-      targetDate: "Dec 2025",
-      frequency: "Every Saturday Evening",
-      description: "Community singing and chanting of divine names",
-    },
-    {
-      activity: "Cultural Dramas",
-      targetDate: "Feb 2026",
-      frequency: "Monthly",
-      description: "Performances based on moral stories from Hindu scriptures, encouraging character development",
-    },
-    {
-      activity: "Sanskrit Classes",
-      targetDate: "Apr 2026",
-      frequency: "Weekly",
-      description: "Teaching Sanskrit to preserve and propagate the language of Hindu scriptures",
-    },
-    {
-      activity: "Philosophical Discussions",
-      targetDate: "July 2026",
-      frequency: "Monthly",
-      description: "Exploring Hindu philosophy and its relevance to modern life, conducted in English for inclusivity",
-    },
-    {
-      activity: "Ayurveda and Yoga Workshops",
-      targetDate: "August 2026",
-      frequency: "Quarterly",
-      description: "Promoting health and wellness through ancient Indian sciences",
-    },
-  ]
+  const [shortTermGoals, setShortTermGoals] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+      const loadVision = async () => {
+        try {
+          const token = await requestToken();
+          const OurVision = await fetchOurVision(token);
+          setShortTermGoals(OurVision);
+          setLoading(false);
+        } catch (err) {
+          setError(err.message);
+          setLoading(false);
+        }
+      };
+  
+      loadVision();
+    }, []);
+
+
+    
+  if (loading) return <div><Loader/></div>;
+  if (error) return <div>{error}</div>;
+
+
 
   return (
     <Layout>
@@ -139,32 +112,32 @@ const Vision = () => {
 
           {/* Timeline Visualization */}
           <h3 className="text-xl md:text-2xl font-bold text-orange-500 text-center mb-6 md:mb-8">
-            Implementation Timeline
-          </h3>
-          <div className="relative">
-            <div className="absolute left-1/2 w-1 h-full bg-orange-300 transform -translate-x-1/2"></div>
-            <div className="space-y-8 md:space-y-12">
-              {shortTermGoals.map((goal, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
-                >
+              Implementation Timeline
+            </h3>
+            <div className="relative">
+              <div className="absolute left-1/2 w-1 h-full bg-orange-300 transform -translate-x-1/2 md:h-full md:block hidden"></div>
+              <div className="space-y-8 md:space-y-12">
+                {shortTermGoals.map((goal, index) => (
                   <div
-                    className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:text-right md:pr-8" : "md:pl-8"} mb-4 md:mb-0`}
+                    key={index}
+                    className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
                   >
-                    <h4 className="text-lg font-semibold text-orange-500">{goal.activity}</h4>
-                    <p className="text-sm text-orange-300">{goal.targetDate}</p>
+                    <div
+                      className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:text-right md:pr-8" : "md:pl-8"} mb-4 md:mb-0`}
+                    >
+                      <h4 className="text-lg font-semibold text-orange-500">{goal.activity}</h4>
+                      <p className="text-sm text-orange-300">{goal.targetDate}</p>
+                    </div>
+                    <div className={`w-full md:w-2/12 flex justify-center mb-4 md:mb-0 ${index % 2 === 0 ? "hidden md:flex" : "hidden md:flex"}`}>
+                      <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                    </div>
+                    <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pl-8" : "md:pr-8"}`}>
+                      <p className="text-sm text-gray-600">{goal.description}</p>
+                    </div>
                   </div>
-                  <div className="w-full md:w-2/12 flex justify-center mb-4 md:mb-0">
-                    <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
-                  </div>
-                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pl-8" : "md:pr-8"}`}>
-                    <p className="text-sm text-gray-600">{goal.description}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
         </div>
       </section>
 

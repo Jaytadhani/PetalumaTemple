@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiPhone, HiChevronDown, HiX } from "react-icons/hi";
 import Logo from "../assets/Logo1.png";
 import { useGSAP } from "@gsap/react";
@@ -8,7 +8,9 @@ import gsap from "gsap";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false); 
   const navRef = useRef();
+  const location =useLocation()
 
   useGSAP(() => {
     gsap.from(".anim", {
@@ -19,6 +21,13 @@ export default function Navbar() {
       stagger: 0.05,
     });
   });
+
+// scrool to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]); // Run this effect whenever the location changes
+
+
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -31,15 +40,7 @@ export default function Navbar() {
         { name: "Direct Donation", path: "/direct-donation" },
       ],
     },
-    {
-      name: "Pages",
-      path: "#",
-      dropdown: [
-        { name: "Who We Are", path: "/who-we-are" },
-        { name: "Our Vision", path: "/vision" },
-        { name: "Plan a Visit", path: "/visit" },
-      ],
-    },
+    { name: "Our Vision", path: "/vision" },
     { name: "Event", path: "/event" },
     { name: "About Us", path: "/about" },
     { name: "Contacts", path: "/contact" },
@@ -101,11 +102,11 @@ export default function Navbar() {
           {/* Contact and Donate */}
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
             <a
-              href="tel:1800458567"
+              href="tel:+1 503 519 4060"
               className="text-gray-800 flex items-center anim space-x-2"
             >
               <HiPhone className="h-5 w-5" />
-              <span>1 800 458 56 97</span>
+              <span>+1 503 519 4060</span>
             </a>
             <Link
               to="/donate"
@@ -132,21 +133,36 @@ export default function Navbar() {
             {navLinks.map((link) =>
               link.dropdown ? (
                 <div key={link.name} className="space-y-1">
-                  <div className="text-gray-800 px-3 py-2 font-medium">
+                  {/* Click to open dropdown */}
+                  <button
+                    className="text-gray-800 px-3 py-2 font-medium w-full text-left flex justify-between items-center"
+                    onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                  >
                     {link.name}
-                  </div>
-                  <div className="pl-4 space-y-1">
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.path}
-                        className="text-gray-600 hover:text-gray-800 block px-3 py-2"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
+                    <HiChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        mobileDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {/* Show dropdown when clicked */}
+                  {mobileDropdownOpen && (
+                    <div className="pl-4 space-y-1">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          className="text-gray-600 hover:text-gray-800 block px-3 py-2"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setMobileDropdownOpen(false);
+                          }}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <Link

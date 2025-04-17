@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { Provider } from "react-redux"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import store from "./store/store"
 import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Event from "./Pages/Event"
@@ -15,6 +14,7 @@ import Vision from "./Pages/Vision"
 import DonationCauses from "./Pages/DonationCauses"
 import DirectDonation from "./Pages/DirectDonation"
 import DonationDetail from "./Pages/DonationDetail"
+import Whoweare from "./Pages/Whoweare"
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -57,7 +57,6 @@ const App = () => {
   }, [])
 
   return (
-    <Provider store={store}>
       <Router>
         <PageWrapper>
           <Routes>
@@ -70,13 +69,12 @@ const App = () => {
             <Route path="/vision" element={<Vision />} />
             <Route path="/donation-causes" element={<DonationCauses />} />
           <Route path="/direct-donation" element={<DirectDonation />} />
+          <Route path="//who-we-are" element={<Whoweare />} />
           <Route path="/donation/:id" element={<DonationDetail />} />
           </Routes>
         </PageWrapper>
       </Router>
-    </Provider>
   )
 }
 
 export default App
-

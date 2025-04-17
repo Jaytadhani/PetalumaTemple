@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '../Components/Layout'
+import Layout from '../components/layout';
+
 
 const dummyCauses = [
   { 
@@ -32,7 +33,7 @@ const dummyCauses = [
 const DonationCauses = () => {
   return (
     <Layout>
-    <div className="my-20 mx-20">
+    <div className="my-20 mx-4">
       <h1 className="text-4xl font-bold text-orange-800 text-center mb-8">Support Our Temple</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {dummyCauses.map(cause => (

@@ -24,7 +24,7 @@ export default function Footer() {
               <p>2 Hiil Drive, </p>
               <p>Petaluma, USA-94952</p>
               <p className="mt-4">jayshreesitarama@gmail.com</p>
-              <p className="text-lg font-semibold mt-4">+15 0351 94060</p>
+              <p className="text-lg font-semibold mt-4">+1 503 519 4060</p>
             </div>
           </div>
 
@@ -38,14 +38,14 @@ export default function Footer() {
               <Link to="/donation" className="block hover:text-gray-300">
                 Donation
               </Link>
-              <Link to="/events" className="block hover:text-gray-300">
+              <Link to="/event" className="block hover:text-gray-300">
                 Events
               </Link>
-              <Link to="/about-us" className="block hover:text-gray-300">
+              <Link to="/about" className="block hover:text-gray-300">
                 About Us
               </Link>
 
-              <Link to="/contacts" className="block hover:text-gray-300">
+              <Link to="/contact" className="block hover:text-gray-300">
                 Contacts
               </Link>
             </nav>
