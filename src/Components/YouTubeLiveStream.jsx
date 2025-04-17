@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import hanumanchalisa from "../assets/youtube/hanumanchalisa.mp4";
+import hanumanchalisa from "../assets/event/firstevent.jpg";
 
 const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 const CHANNEL_ID = import.meta.env.VITE_YOUTUBE_CHANNEL_ID;
@@ -82,12 +82,13 @@ function YouTubeLiveStream() {
   return (
     <div className="bg-orange-300 p-4 rounded-lg shadow-md w-fit">
       <h2 className="text-2xl text-center font-bold text-orange-800 mb-4">Featured Video</h2>
-      <div className="flex justify-center">
-        <video className="w-320 h-180" controls>
-          <source src={hanumanchalisa} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+     <div className="flex justify-center">
+  <img
+    src={hanumanchalisa}
+    alt="Featured"
+    className="w-[320px] h-[180px] object-cover rounded-md"
+  />
+</div>
 
       <h2 className="text-2xl font-bold text-orange-800 mt-6 mb-4">Recent Videos</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
